@@ -2,6 +2,7 @@ arxiv
 requests
 schedule
 openai
+google-genai
 pypdf
 email-validator
 python-dotenv
