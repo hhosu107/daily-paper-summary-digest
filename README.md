@@ -30,8 +30,8 @@ Edit `config.yaml` file.
 Create a new `.env` file containing:
 
 ```
-OPENAI_MODEL=gpt-4o-mini
-OPENAI_API_KEY=openai_api_key
+GEMINI_MODEL=models/gemini-2.5-flash-preview-04-17
+GEMINI_API_KEY=gemini_api_key
 EMAIL_ADDRESS=sender_email@email.com
 EMAIL_PASSWORD=gmail_app_password
 SMTP_SERVER=smtp.gmail.com
