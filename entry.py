@@ -12,6 +12,7 @@ from io import BytesIO
 from pathlib import Path
 from datetime import datetime
 
+from google import genai
 from pypdf import PdfReader
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -24,13 +25,15 @@ load_dotenv()
 
 # clients
 arxiv_client = arxiv.Client()
-openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+# openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+gemini_client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
 
 # alias
 now = datetime.now
 
 # constants
-OPENAI_MODEL = str(os.getenv('OPENAI_MODEL', 'gpt-4o-mini'))
+# OPENAI_MODEL = str(os.getenv('OPENAI_MODEL', 'gpt-4o-mini'))
+GEMINI_MODEL = str(os.getenv('GEMINI_MODEL', 'models/gemini-2.5-flash-preview-04-17'))
 PAGE_LIMIT = int(os.getenv('PAGE_LIMIT', 8))
 MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 12000))
 TIMEZONE = str(os.getenv('TIMEZONE', 'UTC'))
@@ -70,6 +73,12 @@ def url2content(url, page_limit=8):
 
 
 def chat(message):
+    response = gemini_client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=[message],
+    )
+    return response.text
+"""
     response = openai_client.chat.completions.create(
         model=OPENAI_MODEL,
         messages=[{
@@ -79,6 +88,7 @@ def chat(message):
         temperature=0.3,
     )
     return response.choices[0].message.content.strip()
+"""
 
 
 def summarize(title, content, prompt_file, max_content_length=12000):
