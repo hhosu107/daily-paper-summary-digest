@@ -1,0 +1,23 @@
+services:
+  digest:
+    command:
+      - uv
+      - run
+      - /app/entry.py
+      - '--config'
+      - /config/config.yaml
+      - '--prompt'
+      - /config/prompt.txt
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+    env_file:
+      - /path/to/paper-digest-config-directory/.env
+    image: ghcr.io/hhosu107/daily-paper-summary-digest:release
+    ports:
+      - '587:587'
+    volumes:
+      - /path/to/paper-digest-config-directory/config.yaml:/config/config.yaml
+      - /path/to/paper-digest-config-directory/prompt.txt:/config/prompt.txt
