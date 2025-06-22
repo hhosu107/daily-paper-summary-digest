@@ -1,3 +1,4 @@
+OPENAI_MODEL=gpt-4o-min0
 import os
 import yaml
 import time
@@ -33,7 +34,7 @@ now = datetime.now
 
 # constants
 # OPENAI_MODEL = str(os.getenv('OPENAI_MODEL', 'gpt-4o-mini'))
-GEMINI_MODEL = str(os.getenv('GEMINI_MODEL', 'models/gemini-2.5-flash-preview-04-17'))
+GEMINI_MODEL = str(os.getenv('GEMINI_MODEL', 'models/gemini-2.5-flash'))
 PAGE_LIMIT = int(os.getenv('PAGE_LIMIT', 8))
 MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 12000))
 TIMEZONE = str(os.getenv('TIMEZONE', 'UTC'))
